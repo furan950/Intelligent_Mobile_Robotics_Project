@@ -1,4 +1,5 @@
 from flight_environment import FlightEnvironment
+import time
 
 env = FlightEnvironment(50)
 start = (1,2,0)
@@ -10,6 +11,8 @@ import matplotlib.pyplot as plt
 from flight_environment import FlightEnvironment
 from path_planner import PathPlanner
 from trajectory_generator import TrajectoryGenerator
+
+start_time = time.perf_counter()
 
 # 初始化环境
 env = FlightEnvironment(50)
@@ -27,7 +30,10 @@ planner = PathPlanner(env)
 # path 是一个 N x 3 的 numpy 数组或列表
 path = planner.plan(start, goal)
 
-print(f"   路径规划完成，共生成 {len(path)} 个路径点。")
+end_time = time.perf_counter()
+
+print(f"   路径规划完成，共生成 {len(path)} 个路径点。 耗时{end_time - start_time}秒")
+
 
 # Visualization 1: 3D Path (路径可视化)
 print("2. 显示路径可视化...")
